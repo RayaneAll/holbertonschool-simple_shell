@@ -1,14 +1,15 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "shell.h"
 
 /**
-* main - Simple shell to read and print user input
+* read_line - Simple shell to read and print user input
 *
 * Return: Always 0
 */
 
-int main(void)
+int read_line(void)
 {
 	char *line;
 

@@ -11,6 +11,8 @@
 #include <sys/stat.h>
 
 void display_shell(void);
-int execute_command(void);
+int execute_command(char *command);
+int read_line(void);
+int main(void);
 
 #endif /* __SHELL_H__ */
