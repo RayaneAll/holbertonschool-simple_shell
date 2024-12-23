@@ -20,7 +20,6 @@ int read_line(void)
 	size = 0;
 	while (1)
 	{
-		display_shell();
 		nread = getline(&line, &size, stdin);
 
 		if (nread == -1)
