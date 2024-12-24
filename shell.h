@@ -10,9 +10,11 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+extern char **environ;
+
 void display_shell(void);
 int execute_command(char *command);
-int read_line(void);
+char *read_line(void);
 int main(void);
 
 #endif /* __SHELL_H__ */
