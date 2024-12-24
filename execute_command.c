@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <string.h>
 #include <stdlib.h>
 #include "shell.h"
 
@@ -19,9 +18,9 @@ int execute_command(char *command)
 	int status;
 
 	/* Trim newline from command */
-	command[strcspn(command, "\n")] = '\0';
+	command[_strcspn(command, "\n")] = '\0';
 
-	if (command == NULL || strlen(command) == 0)
+	if (command == NULL || _strlen(command) == 0)
 		return (1);
 
 	if (access(command, X_OK) == -1)
