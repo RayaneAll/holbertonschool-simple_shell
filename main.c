@@ -12,6 +12,8 @@ int main(void)
 
 		size_t count = 0;
 		ssize_t nread;
+		pid_t child_pid;
+		int status;
 
 		while (1)
 		{
@@ -23,7 +25,23 @@ int main(void)
 				perror("Exiting shell");
 				exit(1);
 			}
-			printf("%s", buffer);
+
+			child_pid = fork();
+
+			if (child_pid == -1)
+			{
+				perror("Failed to create.");
+				exit(41);
+			}
+
+			if (child_pid == 0)
+			{
+				printf("The creation was successful\n");
+			}
+			else
+			{
+				wait(&status);
+			}
 		}
 		free(buffer);
 		return (0);
