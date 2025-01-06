@@ -15,6 +15,12 @@ int main(void)
 		pid_t child_pid;
 		int status;
 
+		char **array;
+
+		char *token;
+
+		int i;
+
 		while (1)
 		{
 			printf("#cisfun$ ");
@@ -26,6 +32,17 @@ int main(void)
 				exit(1);
 			}
 
+			token = strtok(buffer, " \n");
+            array = malloc(sizeof(char *) * 1024);
+            i = 0;
+            while (token)
+            {
+                array[i] = token;
+                token = strtok(NULL, " \n");
+                i++;
+            }
+            array[i] = NULL;
+
 			child_pid = fork();
 
 			if (child_pid == -1)
@@ -36,7 +53,11 @@ int main(void)
 
 			if (child_pid == 0)
 			{
-				printf("The creation was successful\n");
+				if (execve(array[0], array, NULL) == -1)
+				{
+					perror("Couldn't execute");
+					exit(97);
+				}
 			}
 			else
 			{
