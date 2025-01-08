@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * execute_command - Creates a child process to execute a command
- * @array: Array of command arguments
- */
+* execute_command - Creates a child process to execute a command
+* @array: Array of command arguments
+*/
 void execute_command(char **array)
 {
 	pid_t child_pid;
@@ -33,15 +33,16 @@ void execute_command(char **array)
 }
 
 /**
- * parse_input - Reads and tokenizes user input
- * @buf: Buffer to store user input
- * @count: Pointer to size of the buffer
- * Return: Tokenized array of strings
- */
+* parse_input - Reads and tokenizes user input
+* @buf: Buffer to store user input
+* @count: Pointer to size of the buffer
+* Return: Tokenized array of strings
+*/
 char **parse_input(char *buf, size_t *count)
 {
 	ssize_t nread;
 	char *token, **array;
+
 	int i;
 
 	write(STDOUT_FILENO, "MyShell$ ", 9);
@@ -75,15 +76,16 @@ char **parse_input(char *buf, size_t *count)
 }
 
 /**
- * main - Entry point of the shell program
- * @argc: Argument count
- * @argv: Array of argument values
- *
- * Return: 0 on success
- */
+* main - Entry point of the shell program
+* @argc: Argument count
+* @argv: Array of argument values
+*
+* Return: 0 on success
+*/
 int main(int argc, char **argv)
 {
 	char *buf = NULL, **array;
+
 	size_t count = 0;
 
 	(void)argc;
@@ -94,8 +96,9 @@ int main(int argc, char **argv)
 		array = parse_input(buf, &count);
 		execute_command(array);
 		free(array);
+		free(buf);
+		buf = NULL;
 	}
 
-	free(buf);
 	return (0);
 }
