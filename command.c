@@ -1,15 +1,16 @@
 #include "shell.h"
 
 /**
- * parse_command - Découpe une commande en arguments.
- * @command: Ligne de commande à découper.
- * @argv: Tableau pour stocker les arguments.
- *
- * Return: Nombre d'arguments.
- */
+* parse_command - Découpe une commande en arguments.
+* @command: Ligne de commande à découper.
+* @argv: Tableau pour stocker les arguments.
+*
+* Return: Nombre d'arguments.
+*/
 int parse_command(char *command, char *argv[])
 {
 	char *token;
+
 	int i = 0;
 
 	token = strtok(command, " \n");
@@ -24,17 +25,18 @@ int parse_command(char *command, char *argv[])
 }
 
 /**
- * handle_builtin_commands - Gère les commandes intégrées ("env", "exit").
- * @argv: Tableau des arguments.
- * @command: Ligne de commande.
- *
- * Return: 1 si une commande intégrée a été exécutée, 0 sinon.
- */
-int handle_builtin_commands(char *argv[], char *command)
+* handle_builtin_commands - Gère les commandes intégrées ("env", "exit").
+* @argv: Tableau des arguments.
+* @command: Ligne de commande.
+* @envp: Tableau contenant les variables d'environnement.
+*
+* Return: 1 si une commande intégrée a été exécutée, 0 sinon.
+*/
+int handle_builtin_commands(char *argv[], char *command, char *envp[])
 {
 	if (argv[0] && strcmp(argv[0], "env") == 0)
 	{
-		print_env();
+		print_env(envp);
 		return (1);
 	}
 
@@ -49,22 +51,25 @@ int handle_builtin_commands(char *argv[], char *command)
 }
 
 /**
- * execute_command - Exécute une commande avec gestion du PATH.
- * @command: La ligne de commande à exécuter.
- *
- * Return: 0 en cas de succès, 1 si la commande est invalide.
- */
-int execute_command(char *command)
+* execute_command - Exécute une commande avec gestion du PATH.
+* @command: La ligne de commande à exécuter.
+* @envp: Tableau contenant les variables d'environnement.
+*
+* Return: 0 en cas de succès, 1 si la commande est invalide.
+*/
+int execute_command(char *command, char *envp[])
 {
 	char *argv[1024];
+
 	char *path = NULL;
+
 	pid_t pid;
 	int status;
 
 	if (parse_command(command, argv) == 0)
 		return (1);
 
-	if (handle_builtin_commands(argv, command))
+	if (handle_builtin_commands(argv, command, envp))
 		return (0);
 
 	path = find_command_in_path(argv[0]);
@@ -77,7 +82,7 @@ int execute_command(char *command)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(path, argv, environ) == -1)
+		if (execve(path, argv, envp) == -1)
 		{
 			perror(argv[0]);
 			_exit(EXIT_FAILURE);
