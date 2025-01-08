@@ -1,15 +1,14 @@
 #include "shell.h"
 
 /**
- * print_env - Affiche les variables d'environnement.
- */
-void print_env(void)
+* print_env - Affiche les variables d'environnement.
+* @envp: Tableau contenant les variables d'environnement.
+*/
+void print_env(char *envp[])
 {
-	char **env = environ;
-
-	while (*env)
+	while (*envp)
 	{
-		printf("%s\n", *env);
-		env++;
+		printf("%s\n", *envp);
+		envp++;
 	}
 }
