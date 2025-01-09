@@ -24,13 +24,6 @@ int main(void)
 		/* Lire une ligne d'entrée utilisateur */
 		command = read_line();
 
-		/* Vérifie si la commande entrée est "exit\n" */
-		if (strcmp(command, "exit\n" == 0))
-		{
-			free(command);
-			exit(EXIT_SUCCESS);
-		}
-
 		/* Vérifier si aucune commande n'a été entrée */
 		if (command == NULL)
 			continue; /* Ignorer et passer à la prochaine itération */
