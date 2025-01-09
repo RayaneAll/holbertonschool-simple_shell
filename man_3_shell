@@ -1,0 +1,57 @@
+# SIMPLE SHELL MANUAL PAGE
+
+## NAME
+                    hsh - Simple shell
+
+DESCRIPTION
+       hsh is a simple shell that reads user input and executes commands.
+       It supports basic internal commands like 'cd', 'ls', 'exit', and external
+       commands found in the system `PATH`. It can be run in both interactive
+       and non-interactive modes.
+
+       The shell reads a command, forks a process to run it, and then waits
+       for the process to finish.
+.INTERN COMMANDS
+       cd [directory]
+           Changes the current directory. If no directory is specified,
+           it changes to the user's home directory.
+
+## UTIL FUNCTIONS
+       - display_shell: Displays a prompt for the user to enter a command. It typically represents the interactive shell.
+       - execute_command: Executes a command by searching for its path in PATH, then launches a child process using execve. It also handles special commands like exit and env.
+       - read_line: Reads a line of input entered by the user, usually using fgets or getline to capture standard input.
+       - tokenize_command: Splits a command line into tokens (arguments) separated by spaces or special characters, typically using strtok, to prepare for execution.
+       - execute_fork: Creates a child process using fork to execute a command. The child process uses execve to run the command, while the parent process waits for the child to finish.
+       - main: The main function of the program, typically responsible for initialization, displaying the prompt, managing the command input loop, and executing commands until exit.
+
+## COMPILATION
+       gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+## ERRORS
+       If a command fails, the shell shows an error message:
+           $ echo "qwerty" | ./hsh
+           ./hsh: 1: qwerty: not found
+
+## FILES
+       /etc/passwd
+           User information used by `cd`.
+
+       /etc/environment
+           Environment variables for the shell.
+
+## EXAMPLES
+        Example: Change directory
+
+           hsh> cd /home/user
+           hsh> pwd
+           /home/user
+
+       Example: Run a command
+
+           hsh> ls
+           (lists files in the current directory)
+
+## AUTHORS
+              Rayane Allaoui
+              Mattieu Mouroux
+              
