@@ -9,6 +9,9 @@
 */
 void display_shell(void)
 {
-	/* Utilisation de printf pour afficher le prompt du shell */
-	printf("");
+	if (isatty(STDIN_FILENO))
+	{
+		printf("$ ");
+	}
+
 }
