@@ -29,7 +29,7 @@ int main(void)
 			free(command);
 			exit(EXIT_SUCCESS);
 		}
-
+    
 		/* Vérifier si aucune commande n'a été entrée */
 		if (command == NULL)
 			continue; /* Ignorer et passer à la prochaine itération */
