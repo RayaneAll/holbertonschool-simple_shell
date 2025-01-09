@@ -31,12 +31,6 @@ int main(void)
 			exit(EXIT_SUCCESS);
 		}
 
-		if (strcmp(command, "exit " == 0))
-		{
-			free(command);
-			exit(EXIT_SUCCESS);
-		}
-
 		/* Vérifier si aucune commande n'a été entrée */
 		if (command == NULL)
 			continue; /* Ignorer et passer à la prochaine itération */
