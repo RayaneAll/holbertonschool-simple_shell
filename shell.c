@@ -24,15 +24,15 @@ int main(void)
 		/* Lire une ligne d'entrée utilisateur */
 		command = read_line();
 
+		/* Vérifier si aucune commande n'a été entrée */
+		if (command == NULL)
+			continue; /* Ignorer et passer à la prochaine itération */
+
 		if (strcmp(command, "exit\n") == 0)
 		{
 			free(command);
 			exit(EXIT_SUCCESS);
 		}
-    
-		/* Vérifier si aucune commande n'a été entrée */
-		if (command == NULL)
-			continue; /* Ignorer et passer à la prochaine itération */
 
 		/* Exécuter la commande entrée par l'utilisateur */
 		execute_command(command);

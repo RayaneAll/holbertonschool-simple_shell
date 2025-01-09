@@ -3,7 +3,7 @@
 /**
 * display_shell - Affiche le prompt du shell.
 *
-* Cette fonction affiche un prompt personnalisé "#cisfun$ "
+* Cette fonction affiche un prompt personnalisé "$ "
 * pour inviter l'utilisateur à entrer une commande.
 * Elle ne prend aucun argument et ne retourne rien.
 */
