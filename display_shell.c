@@ -1,17 +1,15 @@
 #include "shell.h"
 
 /**
-* display_shell - Affiche le prompt du shell.
-*
-* Cette fonction affiche un prompt personnalisé "$ "
-* pour inviter l'utilisateur à entrer une commande.
-* Elle ne prend aucun argument et ne retourne rien.
-*/
+ * display_shell - Displays the shell prompt.
+ *
+ * This function prints a custom prompt "$ " to invite the user
+ * to input a command. It takes no arguments and returns nothing.
+ */
 void display_shell(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
 		printf("$ ");
 	}
-
 }
