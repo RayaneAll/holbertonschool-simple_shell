@@ -3,7 +3,7 @@
 ## NAME
                     hsh - Simple shell
 
-DESCRIPTION
+## DESCRIPTION
        hsh is a simple shell that reads user input and executes commands.
        It supports basic internal commands like 'cd', 'ls', 'exit', and external
        commands found in the system `PATH`. It can be run in both interactive
@@ -11,7 +11,7 @@ DESCRIPTION
 
        The shell reads a command, forks a process to run it, and then waits
        for the process to finish.
-.INTERN COMMANDS
+## INTERN COMMANDS
        cd [directory]
            Changes the current directory. If no directory is specified,
            it changes to the user's home directory.
@@ -31,6 +31,11 @@ DESCRIPTION
        If a command fails, the shell shows an error message:
            $ echo "qwerty" | ./hsh
            ./hsh: 1: qwerty: not found
+
+## ENVIRONMENT
+       The shell uses the following environment variables:
+
+       PATH   A colon-separated list of directories to search for commands.
 
 ## FILES
        /etc/passwd
@@ -54,4 +59,6 @@ DESCRIPTION
 ## AUTHORS
               Rayane Allaoui
               Mattieu Mouroux
-              
+
+## BUGS
+       Report bugs to the project repository.
